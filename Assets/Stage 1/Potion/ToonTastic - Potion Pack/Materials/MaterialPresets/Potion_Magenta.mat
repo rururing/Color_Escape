@@ -2,16 +2,14 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Potion_Yellow
+  m_Name: Potion_Magenta
   m_Shader: {fileID: 4800000, guid: f99852a3460f1fd4a95553849ff3acc3, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _EMISSION
+  m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -63,7 +61,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FillAmount: 0.4
+    - _FillAmount: 0.6
     - _GlossMapScale: 1
     - _Glossiness: 0.535
     - _GlossyReflections: 1
@@ -72,7 +70,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rim: 0
-    - _RimPower: 5.43
+    - _RimPower: 3.16
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -82,9 +80,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0.07028256, b: 0, a: 1}
-    - _Colour: {r: 1, g: 0.8812717, b: 0, a: 1}
+    - _Colour: {r: 1, g: 0, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 0.30884862, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.98039216, g: 0.41442415, b: 0.023529401, a: 1}
-    - _TopColor: {r: 1, g: 0.95581406, b: 0.6, a: 1}
+    - _RimColor: {r: 0.023529401, g: 0.31198597, b: 0.98039216, a: 1}
+    - _TopColor: {r: 1, g: 0, b: 0.5803922, a: 1}
   m_BuildTextureStacks: []
