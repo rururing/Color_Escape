@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Key : InteractiveItem
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void onClick()
     {
-        
+        pickUp();
+    }
+    public override void pickUp()
+    {
+        //InventoryManager.Instance.Add(Item);
+        Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+

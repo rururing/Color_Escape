@@ -80,7 +80,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0.07028256, b: 0, a: 1}
-    - _Colour: {r: 1, g: 0, b: 0, a: 1}
+    - _Colour: {r: 0.70980394, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 0.30884862, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}

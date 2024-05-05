@@ -31,7 +31,7 @@ public class BlueFlask : InteractiveItem
     }
     public void makeWhite()
     {
-        if (potionColor == 4)
+        if (potionColor == 4 || potionColor == 3)
         {
             changeColor(Potion_White);
             potionColor = 5;
@@ -74,6 +74,14 @@ public class BlueFlask : InteractiveItem
                 makeWhite();
             }
         }
+        if (potionColor == 3)
+        {
+            if (flashlight.flashLightColor == 2)
+            {
+                makeWhite();
+            }
+        }
+
     }
 
     public void changeColor(Material newMaterial)

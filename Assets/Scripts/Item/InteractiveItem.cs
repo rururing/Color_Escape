@@ -12,5 +12,8 @@ public class InteractiveItem : MonoBehaviour
 
     public virtual void pickUp() { }
 
+    public virtual void press() { }
+
     public virtual void lightFlashed (int flashLightColor) { }
+
 }
