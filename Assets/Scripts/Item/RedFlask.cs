@@ -56,7 +56,7 @@ public class RedFlask : InteractiveItem
 
         if(potionColor == 0) 
         {
-            Debug.Log("R플라스크에서 후레쉬 색" + flashlight.flashLightColor);
+            //Debug.Log("R플라스크에서 후레쉬 색" + flashlight.flashLightColor);
             
             if (flashlight.flashLightColor == 3)
             {

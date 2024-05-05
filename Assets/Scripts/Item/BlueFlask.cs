@@ -56,7 +56,7 @@ public class BlueFlask : InteractiveItem
 
         if (potionColor == 1)
         {
-            Debug.Log("B플라스크에서 후레쉬 색" + flashlight.flashLightColor);
+            //Debug.Log("B플라스크에서 후레쉬 색" + flashlight.flashLightColor);
 
             if (flashlight.flashLightColor == 3)
             {
