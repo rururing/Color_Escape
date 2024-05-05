@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Flashlight : MonoBehaviour
+{
+
+    public int flashLightColor = -1;
+    Light light;
+
+    // 빨간색, 초록색, 파란색을 순서대로 저장할 배열
+    Color[] colors = { Color.clear, Color.red, Color.green, Color.blue };
+
+    // 손전등 색 1 : None, 2 : R, 3 : G, 0 : B
+
+    void Start()
+    {
+        light = GetComponent<Light>();
+        
+        ChangeLightColor();
+    }
+
+    // 색상을 변경하는 함수
+    void ChangeLightColor()
+    {
+        // 현재 인덱스에 해당하는 색상으로 변경
+        light.color = colors[flashLightColor];
+        // 다음에 변경될 색상 인덱스 업데이트
+        flashLightColor = (flashLightColor + 1) % colors.Length;
+    }
+
+    bool isFlashlightOn = false;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ChangeLightColor();
+            Debug.Log("토글"+ flashLightColor);
+            isFlashlightOn = !isFlashlightOn; // 손전등이 켜졌으면 상태를 바꿉니다.
+        }
+
+        // 손전등이 켜져 있을 때만 레이캐스트를 발생시킵니다.
+        if (isFlashlightOn)
+        {
+            Ray ray = new Ray(transform.position, transform.forward);
+            RaycastHit hitInfo;
+
+            // 광선이 어떤 물체와 충돌하는지 체크합니다.
+            if (Physics.Raycast(ray, out hitInfo, 50f))
+            {
+                // Debug.Log("Flashlight Hit object: " + hitInfo.collider.gameObject.name);
+                GameObject hitObject = hitInfo.collider.gameObject;
+                InteractiveItem flahsedObject = hitObject.GetComponent<InteractiveItem>();
+
+                if (flahsedObject != null)
+                {
+                    flahsedObject.lightFlashed(flashLightColor);
+                }
+               
+            }
+        }
+    }
+}
+
+
