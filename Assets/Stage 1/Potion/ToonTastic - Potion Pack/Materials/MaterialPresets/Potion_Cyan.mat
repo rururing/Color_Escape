@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Potion_Magenta
+  m_Name: Potion_Cyan
   m_Shader: {fileID: 4800000, guid: f99852a3460f1fd4a95553849ff3acc3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -80,9 +80,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0.07028256, b: 0, a: 1}
-    - _Colour: {r: 1, g: 0, b: 1, a: 1}
+    - _Colour: {r: 0, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 0.30884862, b: 0, a: 1}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 0.31198597, b: 0.98039216, a: 1}
-    - _TopColor: {r: 1, g: 0, b: 0.5803922, a: 1}
+    - _FoamColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    - _RimColor: {r: 0.6745098, g: 1, b: 1, a: 1}
+    - _TopColor: {r: 0, g: 0.9490196, b: 1, a: 1}
   m_BuildTextureStacks: []
