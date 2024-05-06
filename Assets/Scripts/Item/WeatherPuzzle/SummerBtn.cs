@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SummerBtn : InteractiveItem
 {
     // btnColor 0 : R, 1 : G, 2: B, 3: C, 4: M, 5: Y, 6: W
 
+    public int btnId = 2;
     public int btnColor = 1;
     public Flashlight flashlight;
+    public WeatherPuzzleManager check;
     public Material CyanBtn;
     public Material YellowBtn;
     public Material WhiteBtn;
 
+    public Text lockedText;
+
+    public void Start()
+    {
+        // 시작 시에 텍스트를 비활성화
+        lockedText.gameObject.SetActive(false);
+    }
 
     public void makeCyan()
     {
@@ -38,10 +48,22 @@ public class SummerBtn : InteractiveItem
         }
     }
 
-
     public override void onClick()
     {
-        press();
+        if (check.unlocked == 1)
+            press();
+        else
+        {
+            // 텍스트를 활성화하여 상자를 열지 못한다는 메시지를 표시
+            lockedText.gameObject.SetActive(true);
+            // 2초 후에 비활성화되도록 Invoke() 호출
+            Invoke("HideText", 2.0f);
+        }
+    }
+
+    private void HideText()
+    {
+        lockedText.gameObject.SetActive(false);
     }
 
     public override void press()
@@ -83,32 +105,34 @@ public class SummerBtn : InteractiveItem
 
     public override void lightFlashed(int flashLightColor)
     {
+        if (check.unlocked == 1)
+        {
+            if (btnColor == 1)
+            {
+                //Debug.Log("B플라스크에서 후레쉬 색" + flashlight.flashLightColor);
 
-        if (btnColor == 1)
-        {
-            //Debug.Log("B플라스크에서 후레쉬 색" + flashlight.flashLightColor);
-
-            if (flashlight.flashLightColor == 0)
-            {
-                makeCyan();
+                if (flashlight.flashLightColor == 0)
+                {
+                    makeCyan();
+                }
+                else if (flashlight.flashLightColor == 2)
+                {
+                    makeYellow();
+                }
             }
-            else if (flashlight.flashLightColor == 2)
+            if (btnColor == 5)
             {
-                makeYellow();
+                if (flashlight.flashLightColor == 0)
+                {
+                    makeWhite();
+                }
             }
-        }
-        if (btnColor == 5)
-        {
-            if (flashlight.flashLightColor == 0)
+            if (btnColor == 3)
             {
-                makeWhite();
-            }
-        }
-        if (btnColor == 3)
-        {
-            if (flashlight.flashLightColor == 2)
-            {
-                makeWhite();
+                if (flashlight.flashLightColor == 2)
+                {
+                    makeWhite();
+                }
             }
         }
 

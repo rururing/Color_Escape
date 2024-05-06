@@ -21,13 +21,13 @@ public class Detector : MonoBehaviour
                 GameObject hitObject = hitInfo.collider.gameObject;
 
                 // 아이템 획득 가능한 오브젝트인지 확인합니다.
-               InteractiveItem clickedItem = hitObject.GetComponent<InteractiveItem>();
+                InteractiveItem clickedItem = hitObject.GetComponent<InteractiveItem>();
                 if (clickedItem != null)
                 {
                     clickedItem.onClick();
                 }
-            }
 
+            }
         }
     }
 }

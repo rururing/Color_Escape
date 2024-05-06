@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinterBtn : InteractiveItem
 {
     // btnColor 0 : R, 1 : G, 2: B, 3: C, 4: M, 5: Y, 6: W
 
+    public int btnId = 4;
     public int btnColor = 2;
     public Flashlight flashlight;
+    public WeatherPuzzleManager check;
     public Material CyanBtn;
     public Material MagentaBtn;
     public Material WhiteBtn;
 
+    private bool isPuzzleUnlocked = false;
+    public Text lockedText;
 
+    public void Start()
+    {
+        // 시작 시에 텍스트를 비활성화
+        lockedText.gameObject.SetActive(false);
+    }
     public void makeCyan()
     {
         if (btnColor == 2)
@@ -41,7 +51,19 @@ public class WinterBtn : InteractiveItem
 
     public override void onClick()
     {
-        press();
+        if (check.unlocked == 1)
+            press();
+        else
+        {
+            // 텍스트를 활성화하여 상자를 열지 못한다는 메시지를 표시
+            lockedText.gameObject.SetActive(true);
+            // 2초 후에 비활성화되도록 Invoke() 호출
+            Invoke("HideText", 2.0f);
+        }
+    }
+    private void HideText()
+    {
+        lockedText.gameObject.SetActive(false);
     }
 
     public override void press()
@@ -84,35 +106,37 @@ public class WinterBtn : InteractiveItem
 
     public override void lightFlashed(int flashLightColor)
     {
-
-        if (btnColor == 2)
+        if (check.unlocked == 1)
         {
-            //Debug.Log("B플라스크에서 후레쉬 색" + flashlight.flashLightColor);
+            if (btnColor == 2)
+            {
+                //Debug.Log("B플라스크에서 후레쉬 색" + flashlight.flashLightColor);
 
-            if (flashlight.flashLightColor == 3)
-            {
-                makeCyan();
+                if (flashlight.flashLightColor == 3)
+                {
+                    makeCyan();
+                }
+                else if (flashlight.flashLightColor == 2)
+                {
+                    makeMagenta();
+                }
             }
-            else if (flashlight.flashLightColor == 2)
+            if (btnColor == 4)
             {
-                makeMagenta();
+                if (flashlight.flashLightColor == 3)
+                {
+                    makeWhite();
+                }
+            }
+            if (btnColor == 3)
+            {
+                if (flashlight.flashLightColor == 2)
+                {
+                    makeWhite();
+                }
             }
         }
-        if (btnColor == 4)
-        {
-            if (flashlight.flashLightColor == 3)
-            {
-                makeWhite();
-            }
-        }
-        if (btnColor == 3)
-        {
-            if (flashlight.flashLightColor == 2)
-            {
-                makeWhite();
-            }
-        }
-
+     
     }
 
     public void changeColor(Material newMaterial)
