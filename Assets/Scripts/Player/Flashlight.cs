@@ -46,7 +46,7 @@ public class Flashlight : MonoBehaviour
             RaycastHit hitInfo;
 
             // 광선이 어떤 물체와 충돌하는지 체크합니다.
-            if (Physics.Raycast(ray, out hitInfo, 50f))
+            if (Physics.Raycast(ray, out hitInfo, 5f))
             {
                 //Debug.Log("Flashlight Hit object: " + hitInfo.collider.gameObject.name);
                 GameObject hitObject = hitInfo.collider.gameObject;

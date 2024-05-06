@@ -66,6 +66,7 @@ public class BlueFlask : InteractiveItem
 
     public override void pickUp()
     {
+        // 게임매니저 ui
         // 인벤토리에 데이터 넣고 
         Destroy(this.gameObject);
       

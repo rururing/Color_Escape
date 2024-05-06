@@ -14,7 +14,7 @@ public class Detector : MonoBehaviour
             RaycastHit hitInfo;
 
             // 광선이 어떤 물체와 충돌하는지 체크합니다.
-            if (Physics.Raycast(ray, out hitInfo, 50f))
+            if (Physics.Raycast(ray, out hitInfo, 5f))
             {
                 // 충돌한 물체의 이름을 Debug.Log로 출력합니다.
                 Debug.Log("Hit object: " + hitInfo.collider.gameObject.name);
