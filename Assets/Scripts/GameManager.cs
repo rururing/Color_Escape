@@ -1,29 +1,59 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // 게임 매니저에 대한 인스턴스에 접근하는 속성
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            // 인스턴스가 없는 경우 새로 생성
-            if (_instance == null)
-            {
-                // 씬에서 GameManager를 찾음
-                _instance = FindObjectOfType<GameManager>();
 
-                // 씬에 GameManager가 없는 경우 새로운 게임 오브젝트에 추가
-                if (_instance == null)
-                {
-                    GameObject obj = new GameObject("GameManager");
-                    _instance = obj.AddComponent<GameManager>();
-                }
-            }
-            return _instance;
-        }
+    public GameObject HelpPanel;
+    public GameObject SettingPanel;
+
+    void Start()
+    {
+        Cursor.visible = true; // 커서를 보이게 설정
+        Cursor.lockState = CursorLockMode.None; // 커서 잠금 해제
+        // 게임 시작 시 도움말 창을 비활성화
+        HelpPanel.SetActive(false);
+        SettingPanel.SetActive(false);
     }
 
+    public void StartGame()
+    {
+        // Scene 1의 인덱스를 불러와서 해당 Scene으로 전환
+        SceneManager.LoadScene("Stage1");
+    }
+
+    public void OpenHelpPanel()
+    {
+        // 도움말 창을 열음
+        HelpPanel.SetActive(true);
+    }
+
+    public void CloseHelpPanel()
+    {
+        // 도움말 창을 닫음
+        HelpPanel.SetActive(false);
+    }
+    public void OpenSettingPanel()
+    {
+        // 도움말 창을 닫음
+        SettingPanel.SetActive(false);
+    }
+    public void CloseSettingPanel()
+    {
+        // 도움말 창을 닫음
+        SettingPanel.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        // 게임 종료
+        Application.Quit();
+    }
+
+    public void nextStage()
+    {
+        // Scene 1의 인덱스를 불러와서 해당 Scene으로 전환
+        SceneManager.LoadScene("Stage2");
+    }
 }

@@ -10,18 +10,21 @@ public class SpringBtn : InteractiveItem
     public int btnId = 1;
     public int btnColor = 2;
     public Flashlight flashlight;
-    public WeatherPuzzleManager check;
+    public WeatherPuzzleManager puzzle;
     public Material CyanBtn;
     public Material MagentaBtn;
     public Material WhiteBtn;
+    private SecretPassword secretPassword;
+    public Text lockedText1;
+    public Text lockedText2;
 
-    private bool isPuzzleUnlocked = false;
-    public Text lockedText;
 
     public void Start()
     {
         // 시작 시에 텍스트를 비활성화
-        lockedText.gameObject.SetActive(false);
+        lockedText1.gameObject.SetActive(false);
+        lockedText2.gameObject.SetActive(false);
+        secretPassword = FindObjectOfType<SecretPassword>();
     }
     public void makeCyan()
     {
@@ -48,26 +51,39 @@ public class SpringBtn : InteractiveItem
         }
     }
 
-
     public override void onClick()
     {
-        if (check.unlocked == 1)
+        if (puzzle.unlocked == 1)
+        {
             press();
+
+            if (btnColor == 4)
+            {
+                
+                if (secretPassword != null)
+                {
+                    secretPassword.OnButtonPressed(btnId); // btnId는 버튼의 ID입니다. 이를 사용하여 버튼의 ID를 전달합니다.
+                }
+            }
+
+        }
         else
         {
             // 텍스트를 활성화하여 상자를 열지 못한다는 메시지를 표시
-            lockedText.gameObject.SetActive(true);
+            lockedText1.gameObject.SetActive(true);
             // 2초 후에 비활성화되도록 Invoke() 호출
             Invoke("HideText", 2.0f);
         }
     }
     private void HideText()
     {
-        lockedText.gameObject.SetActive(false);
+        lockedText1.gameObject.SetActive(false);
+        lockedText2.gameObject.SetActive(false);
     }
 
     public override void press()
     {
+
         // 현재 위치를 저장합니다.
         Vector3 currentPosition = transform.position;
 
@@ -76,6 +92,8 @@ public class SpringBtn : InteractiveItem
 
         // 오브젝트를 이동시키는 코루틴을 시작합니다.
         StartCoroutine(MoveObject(currentPosition, targetPosition, 0.05f));
+
+
     }
 
     // 오브젝트를 이동시키는 코루틴 함수
@@ -107,7 +125,7 @@ public class SpringBtn : InteractiveItem
 
     public override void lightFlashed(int flashLightColor)
     {
-        if (check.unlocked == 1)
+        if (puzzle.unlocked == 1)
         {
             if (btnColor == 2)
             {

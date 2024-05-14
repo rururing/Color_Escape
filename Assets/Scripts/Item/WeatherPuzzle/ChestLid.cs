@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ChestLid : InteractiveItem
 {
-    public WeatherPuzzleManager check;
+    public SecretPassword check;
     private bool isOpen = false;
     private bool isAnimating = false; // 애니메이션이 실행 중인지 여부를 나타내는 플래그
     private float duration = 2.0f; // 열리는 시간 (초)
@@ -26,8 +26,9 @@ public class ChestLid : InteractiveItem
         if (!isAnimating && check.unlocked == 1)
         {
             StartCoroutine(AnimateOpen());
+            return;
         }
-        else
+        else if (check.unlocked == 0)
         {
             // 텍스트를 활성화하여 상자를 열지 못한다는 메시지를 표시
             lockedText.gameObject.SetActive(true);
