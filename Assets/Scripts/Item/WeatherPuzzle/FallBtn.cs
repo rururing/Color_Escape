@@ -14,7 +14,7 @@ public class FallBtn : InteractiveItem
     public Material YellowBtn;
     public Material MagentaBtn;
     public Material WhiteBtn;
-    private SecretPassword secretPassword;
+    private Password password;
     public Text lockedText1;
     public Text lockedText2;
 
@@ -23,7 +23,7 @@ public class FallBtn : InteractiveItem
         // 시작 시에 텍스트를 비활성화
         lockedText1.gameObject.SetActive(false);
         lockedText2.gameObject.SetActive(false);
-        secretPassword = FindObjectOfType<SecretPassword>();
+        password = FindObjectOfType<Password>();
     }
     public void makeYellow()
     {
@@ -31,6 +31,7 @@ public class FallBtn : InteractiveItem
         {
             changeColor(YellowBtn);
             btnColor = 5;
+     
         }
 
     }
@@ -40,6 +41,7 @@ public class FallBtn : InteractiveItem
         {
             changeColor(MagentaBtn);
             btnColor = 4;
+            
         }
     }
     public void makeWhite()
@@ -48,6 +50,7 @@ public class FallBtn : InteractiveItem
         {
             changeColor(WhiteBtn);
             btnColor = 6;
+            
         }
     }
 
@@ -57,13 +60,9 @@ public class FallBtn : InteractiveItem
         {
             press();
 
-            if (btnColor == 0)
+            if (password != null)
             {
-                
-                if (secretPassword != null)
-                {
-                    secretPassword.OnButtonPressed(btnId); // btnId는 버튼의 ID입니다. 이를 사용하여 버튼의 ID를 전달합니다.
-                }
+                password.OnButtonPressed(btnId); // btnId는 버튼의 ID입니다. 이를 사용하여 버튼의 ID를 전달합니다.
             }
 
         }
@@ -130,10 +129,12 @@ public class FallBtn : InteractiveItem
                 if (flashlight.flashLightColor == 3)
                 {
                     makeYellow();
+                    btnId = 0;
                 }
                 else if (flashlight.flashLightColor == 0)
                 {
                     makeMagenta();
+                    btnId = 0;
                 }
             }
             if (btnColor == 4)
@@ -141,6 +142,7 @@ public class FallBtn : InteractiveItem
                 if (flashlight.flashLightColor == 3)
                 {
                     makeWhite();
+                    btnId = 0;
                 }
             }
             if (btnColor == 5)
@@ -148,6 +150,7 @@ public class FallBtn : InteractiveItem
                 if (flashlight.flashLightColor == 0)
                 {
                     makeWhite();
+                    btnId = 0;
                 }
             }
         }

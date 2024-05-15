@@ -7,14 +7,14 @@ public class WinterBtn : InteractiveItem
 {
     // btnColor 0 : R, 1 : G, 2: B, 3: C, 4: M, 5: Y, 6: W
 
-    public int btnId = 4;
+    public int btnId = 0;
     public int btnColor = 2;
     public Flashlight flashlight;
     public WeatherPuzzleManager puzzle;
     public Material CyanBtn;
     public Material MagentaBtn;
     public Material WhiteBtn;
-    private SecretPassword secretPassword;
+    private Password password;
     public Text lockedText1;
     public Text lockedText2;
 
@@ -23,7 +23,7 @@ public class WinterBtn : InteractiveItem
         // 시작 시에 텍스트를 비활성화
         lockedText1.gameObject.SetActive(false);
         lockedText2.gameObject.SetActive(false);
-        secretPassword = FindObjectOfType<SecretPassword>();
+        password = FindObjectOfType<Password>();
     }
     public void makeCyan()
     {
@@ -47,6 +47,7 @@ public class WinterBtn : InteractiveItem
         {
             changeColor(WhiteBtn);
             btnColor = 6;
+        
         }
     }
 
@@ -55,15 +56,11 @@ public class WinterBtn : InteractiveItem
         if (puzzle.unlocked == 1)
         {
             press();
-          
-                if (btnColor == 6)
-                {
-                    
-                    if (secretPassword != null)
-                    {
-                        secretPassword.OnButtonPressed(btnId); // btnId는 버튼의 ID입니다. 이를 사용하여 버튼의 ID를 전달합니다.
-                    }
-                }
+
+            if (password != null)
+            {
+                password.OnButtonPressed(btnId); // btnId는 버튼의 ID입니다. 이를 사용하여 버튼의 ID를 전달합니다.
+            }
 
         }
         else
@@ -139,6 +136,7 @@ public class WinterBtn : InteractiveItem
                 if (flashlight.flashLightColor == 3)
                 {
                     makeWhite();
+                    btnId = 4;
                 }
             }
             if (btnColor == 3)
@@ -146,6 +144,7 @@ public class WinterBtn : InteractiveItem
                 if (flashlight.flashLightColor == 2)
                 {
                     makeWhite();
+                    btnId = 4;
                 }
             }
         }

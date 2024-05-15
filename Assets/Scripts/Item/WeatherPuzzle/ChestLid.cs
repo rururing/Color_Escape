@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ChestLid : InteractiveItem
 {
-    public SecretPassword check;
+    public Password check;
     private bool isOpen = false;
     private bool isAnimating = false; // 애니메이션이 실행 중인지 여부를 나타내는 플래그
     private float duration = 2.0f; // 열리는 시간 (초)

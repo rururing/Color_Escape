@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class SecretPassword : MonoBehaviour
+public class Password : MonoBehaviour
 {
     public Text lockedText1;
     public Text lockedText2;
     public Text lockedText3;
-    private WeatherPuzzleManager weatherPuzzleManager;
     public int unlocked = 0;
 
     // 올바른 순서 배열
@@ -26,7 +25,6 @@ public class SecretPassword : MonoBehaviour
         lockedText1.gameObject.SetActive(false);
         lockedText2.gameObject.SetActive(false);
         lockedText3.gameObject.SetActive(false);
-        weatherPuzzleManager = FindObjectOfType<WeatherPuzzleManager>();
 
     }
 
@@ -44,6 +42,7 @@ public class SecretPassword : MonoBehaviour
         if (unlocked == 0)
         {
             inputSequence[currentIndex] = btnId;
+            Debug.Log(btnId);
             currentIndex++;
 
 
