@@ -25,6 +25,7 @@ public class FallBtn : InteractiveItem
         lockedText2.gameObject.SetActive(false);
         password = FindObjectOfType<Password>();
     }
+   
     public void makeYellow()
     {
         if (btnColor == 0)
@@ -120,7 +121,7 @@ public class FallBtn : InteractiveItem
     public override void lightFlashed(int flashLightColor)
     {
 
-        if (puzzle.unlocked == 1)
+        if (puzzle.unlocked == 1 && password.unlocked == 0)
         {
             if (btnColor == 0)
             {

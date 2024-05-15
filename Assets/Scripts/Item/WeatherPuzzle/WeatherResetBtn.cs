@@ -6,41 +6,29 @@ using UnityEngine.UI;
 public class WeatherResetBtn : InteractiveItem
 {
 
+    public SpringBtn springBtn;
+    public SummerBtn summerBtn;
+    public FallBtn fallBtn;
+    public WinterBtn winterBtn;
 
-    private SpringBtn springBtn;
-    private SummerBtn summerBtn;
-    private FallBtn fallBtn;
-    private WinterBtn winterBtn;
+    public Password password;
 
-    public Material RedBtn;
-    public Material GreenBtn;
-    public Material BlueBtn;
-
-    private int springOriginalColor;
-    private int summerOriginalColor;
-    private int fallOriginalColor;
-    private int winterOriginalColor;
-
+    public Material[] newMaterials; // 새로운 Material 배열
+    public GameObject[] objectsToUpdate; // Material을 변경할 게임 오브젝트 배열
 
 
     public void Start()
     {
-        springBtn = GetComponent<SpringBtn>();
-        summerBtn = GetComponent<SummerBtn>();
-        fallBtn = GetComponent<FallBtn>();
-        winterBtn = GetComponent<WinterBtn>();
+        springBtn = FindObjectOfType<SpringBtn>();
+        summerBtn = FindObjectOfType<SummerBtn>();
+        fallBtn = FindObjectOfType<FallBtn>();
+        winterBtn = FindObjectOfType<WinterBtn>();
 
-        if (springBtn != null)
-            springOriginalColor = springBtn.btnColor;
-
-        if (summerBtn != null)
-            summerOriginalColor = summerBtn.btnColor;
-
-        if (fallBtn != null)
-            fallOriginalColor = fallBtn.btnColor;
-
-        if (winterBtn != null)
-            winterOriginalColor = winterBtn.btnColor;
+        if (objectsToUpdate.Length != newMaterials.Length)
+        {
+            Debug.LogError("게임 오브젝트와 새로운 Material 배열의 길이가 일치하지 않습니다.");
+            return;
+        }
 
     }
 
@@ -48,31 +36,34 @@ public class WeatherResetBtn : InteractiveItem
     {
         press();
 
-        // 각 버튼의 색상 변경
-        if (springBtn != null)
-            springBtn.changeColor(BlueBtn);
+        for (int i = 0; i < objectsToUpdate.Length; i++)
+        {
+            GameObject obj = objectsToUpdate[i];
+            Material newMaterial = newMaterials[i];
 
-        if (summerBtn != null)
-            summerBtn.changeColor(GreenBtn);
+            // 게임 오브젝트와 Material이 유효한 경우에만 Material 변경
+            if (obj != null && newMaterial != null)
+            {
+                // 게임 오브젝트의 Renderer 컴포넌트 가져오기
+                Renderer renderer = obj.GetComponent<Renderer>();
 
-        if (fallBtn != null)
-            fallBtn.changeColor(RedBtn);
-
-        if (winterBtn != null)
-            winterBtn.changeColor(BlueBtn);
-
-        // 각 버튼의 초기 색상으로 다시 설정
-        if (springBtn != null)
-            springBtn.btnColor = springOriginalColor;
-
-        if (summerBtn != null)
-            summerBtn.btnColor = summerOriginalColor;
-
-        if (fallBtn != null)
-            fallBtn.btnColor = fallOriginalColor;
-
-        if (winterBtn != null)
-            winterBtn.btnColor = winterOriginalColor;
+                // Renderer 컴포넌트가 존재하는 경우 Material 변경
+                if (renderer != null && password.unlocked == 0)
+                {
+                    renderer.material = newMaterial;
+                }
+                else
+                {
+                    Debug.LogWarning("게임 오브젝트에 Renderer 컴포넌트가 없습니다: " + obj.name);
+                }
+            }
+        }
+      
+        springBtn.btnColor = 2;
+        summerBtn.btnColor = 1;
+        fallBtn.btnColor = 0;
+        fallBtn.btnId = 3;
+        winterBtn.btnColor = 2;
 
     }
     public override void press()
@@ -112,16 +103,4 @@ public class WeatherResetBtn : InteractiveItem
             yield return null;
         }
     }
-
-    public void changeColor(Material newMaterial)
-    {
-        Renderer renderer = GetComponent<Renderer>();
-
-        if (renderer != null)
-        {
-            // Assign the new material to the renderer
-            renderer.material = newMaterial;
-        }
-    }
- 
 }

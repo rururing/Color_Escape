@@ -118,7 +118,7 @@ public class SummerBtn : InteractiveItem
 
     public override void lightFlashed(int flashLightColor)
     {
-        if (puzzle.unlocked == 1)
+        if (puzzle.unlocked == 1 && password.unlocked == 0)
         {
             if (btnColor == 1)
             {

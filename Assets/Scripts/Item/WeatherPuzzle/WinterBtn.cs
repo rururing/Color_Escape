@@ -25,6 +25,7 @@ public class WinterBtn : InteractiveItem
         lockedText2.gameObject.SetActive(false);
         password = FindObjectOfType<Password>();
     }
+    
     public void makeCyan()
     {
         if (btnColor == 2)
@@ -116,7 +117,7 @@ public class WinterBtn : InteractiveItem
 
     public override void lightFlashed(int flashLightColor)
     {
-        if (puzzle.unlocked == 1)
+        if (puzzle.unlocked == 1 && password.unlocked == 0)
         {
             if (btnColor == 2)
             {

@@ -1,18 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PotionResetBtn : InteractiveItem 
-{ 
-    // Start is called before the first frame update
+{
+    public RedFlask redFlask;
+    public BlueFlask blueFlask;
+
+    public Material[] newMaterials; // 새로운 Material 배열
+    public GameObject[] objectsToUpdate; // Material을 변경할 게임 오브젝트 배열
+
     void Start()
     {
-        
+
+        redFlask= FindObjectOfType<RedFlask>();
+        blueFlask = FindObjectOfType<BlueFlask>();
+
+        if (objectsToUpdate.Length != newMaterials.Length)
+        {
+            Debug.LogError("게임 오브젝트와 새로운 Material 배열의 길이가 일치하지 않습니다.");
+            return;
+        }
     }
 
     public override void onClick()
     {
         press();
+
+        for (int i = 0; i < objectsToUpdate.Length; i++)
+        {
+            GameObject obj = objectsToUpdate[i];
+            Material newMaterial = newMaterials[i];
+
+            // 게임 오브젝트와 Material이 유효한 경우에만 Material 변경
+            if (obj != null && newMaterial != null)
+            {
+                // 게임 오브젝트의 Renderer 컴포넌트 가져오기
+                Renderer renderer = obj.GetComponent<Renderer>();
+
+                // Renderer 컴포넌트가 존재하는 경우 Material 변경
+                if (renderer != null)
+                {
+                    renderer.material = newMaterial;
+                }
+                else
+                {
+                    Debug.LogWarning("게임 오브젝트에 Renderer 컴포넌트가 없습니다: " + obj.name);
+                }
+            }
+        }
+
+        redFlask.potionColor = 0;
+        blueFlask.potionColor = 1;
     }
 
     public override void press()
@@ -50,17 +90,6 @@ public class PotionResetBtn : InteractiveItem
             transform.position = Vector3.Lerp(endPos, startPos, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
-        }
-    }
-
-    public void changeColor(Material newMaterial)
-    {
-        Renderer renderer = GetComponent<Renderer>();
-
-        if (renderer != null)
-        {
-            // Assign the new material to the renderer
-            renderer.material = newMaterial;
         }
     }
 }
