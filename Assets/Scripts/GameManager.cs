@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject HelpPanel;
     public GameObject SettingPanel;
+    public GameObject CreditPanel;
 
     void Start()
     {
@@ -37,12 +38,24 @@ public class GameManager : MonoBehaviour
     public void OpenSettingPanel()
     {
         // 도움말 창을 닫음
-        SettingPanel.SetActive(false);
+        SettingPanel.SetActive(true);
     }
     public void CloseSettingPanel()
     {
         // 도움말 창을 닫음
         SettingPanel.SetActive(false);
+    }
+
+    public void OpenCreditPanel()
+    {
+        // 도움말 창을 열음
+        CreditPanel.SetActive(true);
+    }
+
+    public void CloseCreditPanel()
+    {
+        // 도움말 창을 닫음
+        CreditPanel.SetActive(false);
     }
 
     public void QuitGame()
