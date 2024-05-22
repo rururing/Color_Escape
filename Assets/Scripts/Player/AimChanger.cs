@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +8,19 @@ public class AimChanger: MonoBehaviour
 
     public Image canvasImage; // 캔버스 이미지를 참조하기 위한 변수
     private Sprite originalSprite;
+    public Text text; // "E"키를 눌러서 상호작용할 수 있다는 내용
+    public Text lightText; // "F"키를 눌러서 상호작용할 수 있다는 내용
+    public Text resetText; // "E"키를 눌러서 리셋할 수 있다는 내용
+
 
     void Start()
     {
         // 캔버스 이미지의 원래 스프라이트를 저장합니다.
         originalSprite = canvasImage.sprite;
+        text.enabled = false;
+        lightText.enabled = false;
+        resetText.enabled = false;
+
     }
     void Update()
     {
@@ -20,18 +30,29 @@ public class AimChanger: MonoBehaviour
         RaycastHit hitInfo;
 
         // 광선이 어떤 물체와 충돌하는지 체크합니다.
-        if (Physics.Raycast(ray, out hitInfo, 50f))
+        if (Physics.Raycast(ray, out hitInfo, 10f))
         {
-            // 충돌한 물체의 이름을 Debug.Log로 출력합니다.
+         
             GameObject hitObject = hitInfo.collider.gameObject;
+            InteractiveItem hoveredItem = hitObject.GetComponent<InteractiveItem>();
 
-
-            InteractiveItem clickedItem = hitObject.GetComponent<InteractiveItem>();
-            if (clickedItem != null)
-            {
-                // 상호작용 가능한 물체일 경우 canvas 이미지를 변경합니다.
+            if (hoveredItem != null)
+            {    
                 if (canvasImage != null)
                 {
+
+                    if (hitObject.name == "Blue Potion" || hitObject.name == "Red Potion" || hitObject.name == "SpringBtn" || hitObject.name == "SummerBtn" || hitObject.name == "FallBtn" || hitObject.name == "WinterBtn")
+                    {
+                        lightText.enabled = true;
+                    }
+                    else if (hitObject.name == "ResetBtn")
+                    {
+                        resetText.enabled = true;
+                    }
+                    else
+                    {
+                        text.enabled = true;
+                    }
                     Sprite yourNewSprite = Resources.Load<Sprite>("RedAim");
 
                     if (yourNewSprite != null)
@@ -46,6 +67,10 @@ public class AimChanger: MonoBehaviour
             {     
                 // 상호작용 가능한 물체가 아닐 경우 원래의 이미지로 변경합니다.
                 canvasImage.sprite = originalSprite;
+                text.enabled = false;
+                lightText.enabled = false;
+                resetText.enabled = false;
+
             }
         }
     }   
