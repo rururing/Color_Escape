@@ -11,7 +11,8 @@ public class AimChanger: MonoBehaviour
     public Text text; // "E"키를 눌러서 상호작용할 수 있다는 내용
     public Text lightText; // "F"키를 눌러서 상호작용할 수 있다는 내용
     public Text resetText; // "E"키를 눌러서 리셋할 수 있다는 내용
-
+    public Text unlockText; // 아직 상호작용을 할 수 없다는 내용
+    public WeatherPuzzleManager puzzle;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class AimChanger: MonoBehaviour
         text.enabled = false;
         lightText.enabled = false;
         resetText.enabled = false;
+        unlockText.enabled = false;
 
     }
     void Update()
@@ -41,13 +43,24 @@ public class AimChanger: MonoBehaviour
                 if (canvasImage != null)
                 {
 
-                    if (hitObject.name == "Blue Potion" || hitObject.name == "Red Potion" || hitObject.name == "SpringBtn" || hitObject.name == "SummerBtn" || hitObject.name == "FallBtn" || hitObject.name == "WinterBtn")
+                    if (hitObject.name == "Blue Potion" || hitObject.name == "Red Potion")
                     {
                         lightText.enabled = true;
                     }
                     else if (hitObject.name == "ResetBtn")
                     {
                         resetText.enabled = true;
+                    }
+                    else if (hitObject.name == "SpringBtn" || hitObject.name == "SummerBtn" || hitObject.name == "FallBtn" || hitObject.name == "WinterBtn")
+                    {
+                        if(puzzle.unlocked == 0)
+                        {
+                            unlockText.enabled = true;
+                        }
+                        else
+                        {
+                            lightText.enabled = true;
+                        }
                     }
                     else
                     {
@@ -68,6 +81,7 @@ public class AimChanger: MonoBehaviour
                 // 상호작용 가능한 물체가 아닐 경우 원래의 이미지로 변경합니다.
                 canvasImage.sprite = originalSprite;
                 text.enabled = false;
+                unlockText.enabled = false;
                 lightText.enabled = false;
                 resetText.enabled = false;
 
