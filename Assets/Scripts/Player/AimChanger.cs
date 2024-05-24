@@ -22,6 +22,7 @@ public class AimChanger: MonoBehaviour
         lightText.enabled = false;
         resetText.enabled = false;
         unlockText.enabled = false;
+        
 
     }
     void Update()
@@ -62,6 +63,7 @@ public class AimChanger: MonoBehaviour
                             lightText.enabled = true;
                         }
                     }
+                    
                     else
                     {
                         text.enabled = true;
