@@ -64,15 +64,4 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void SecondStage()
-    {
-        // Scene 1의 인덱스를 불러와서 해당 Scene으로 전환
-        SceneManager.LoadScene("Stage2");
-    }
-
-    public void ThirdStage()
-    {
-        // Scene 1의 인덱스를 불러와서 해당 Scene으로 전환
-        SceneManager.LoadScene("Stage3");
-    }
 }

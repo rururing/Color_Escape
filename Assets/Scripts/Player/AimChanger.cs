@@ -80,7 +80,7 @@ public class AimChanger: MonoBehaviour
             }
             else
             {     
-                // 상호작용 가능한 물체가 아닐 경우 원래의 이미지로 변경합니다.
+                // 상호작용 가능한 물체가 아닐 경우 원래의 이미지로
                 canvasImage.sprite = originalSprite;
                 text.enabled = false;
                 unlockText.enabled = false;

@@ -111,7 +111,6 @@ public class RedFlask : InteractiveItem
 
         if (renderer != null)
         {
-            // Assign the new material to the renderer
             renderer.material = newMaterial;
         }
     }
