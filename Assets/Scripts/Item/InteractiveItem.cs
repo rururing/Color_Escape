@@ -15,6 +15,8 @@ public class InteractiveItem : MonoBehaviour
 
     public virtual void open() { }
 
+    public virtual void place() { }
+
     public virtual void lightFlashed (int flashLightColor) { }
 
 }

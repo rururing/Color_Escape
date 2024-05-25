@@ -17,7 +17,7 @@ public class Door : InteractiveItem
     {
         if(door.keyobtained == 1) // 키를 가지고있으면
         {
-            SceneManager.LoadScene("Stage3");
+            SceneManager.LoadScene("Stage2");
             // 인벤토리에서 열쇠 파괴
         }
         else
