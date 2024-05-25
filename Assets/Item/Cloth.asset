@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 525b5c65598885446bb3d585dabbf9ee, type: 3}
-  m_Name: Key
+  m_Name: Cloth
   m_EditorClassIdentifier: 
-  id: 8
-  itemName: Key
-  value: 0
+  id: 6
+  itemName: 
+  itemDescription: 
   icon: {fileID: 0}

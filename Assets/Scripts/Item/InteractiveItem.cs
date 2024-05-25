@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class InteractiveItem : MonoBehaviour
 {
-    public int Id = 0;
     public Item Item;
 
     public virtual void onClick() { }
+
 
     public virtual void pickUp() { }
 

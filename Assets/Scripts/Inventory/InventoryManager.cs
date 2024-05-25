@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     public List<Item> Items = new List<Item>();
 
     public Transform ItemContent;
-    public GameObject InventoryItem;
+    public GameObject InventoryItem; // ÇÁ¸®ÆÕ
 
     private void Awake()
     {
@@ -33,9 +34,13 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
-            //var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
-            //var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-           // var itemDescription = obj.transform.Find("ItemDescription").GetComponent<Text>();
+            var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
+            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+            var itemDescription = obj.transform.Find("ItemDescription").GetComponent<Text>();
+
+            itemName.text = item.itemName;
+            itemDescription.text = item.itemDescription;
+            itemIcon.sprite = item.icon;
 
         }
     }

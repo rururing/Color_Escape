@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 525b5c65598885446bb3d585dabbf9ee, type: 3}
-  m_Name: GreenRag
+  m_Name: Doll
   m_EditorClassIdentifier: 
-  id: 7
-  itemName: GreenRag
-  value: 0
+  id: 1
+  itemName: Doll
+  itemDescription: 
   icon: {fileID: 0}

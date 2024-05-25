@@ -19,13 +19,16 @@ public class PanelControl : MonoBehaviour
         // I 키를 누르면 인벤토리 패널의 활성화/비활성화 상태를 변경합니다.
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ToggleInventoryPanel();
+            inventoryPanel.SetActive(true);
         }
     }
 
-    void ToggleInventoryPanel()
+    public void CloseInventory()
     {
-        // 현재 패널의 활성화 상태를 확인하고 반대로 설정합니다.
-        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+        // 도움말 창을 닫음
+        inventoryPanel.SetActive(false);
     }
+
+
+
 }

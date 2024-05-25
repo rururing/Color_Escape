@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject HelpPanel;
     public GameObject SettingPanel;
     public GameObject CreditPanel;
+   
+
 
     void Start()
     {
@@ -16,7 +18,8 @@ public class GameManager : MonoBehaviour
         // 게임 시작 시 도움말 창을 비활성화
         HelpPanel.SetActive(false);
         SettingPanel.SetActive(false);
-    }
+        
+}
 
     public void StartGame()
     {
