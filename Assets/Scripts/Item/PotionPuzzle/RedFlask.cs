@@ -13,6 +13,8 @@ public class RedFlask : InteractiveItem
     public Material Potion_Magenta;
     public Material Potion_White;
 
+
+
     public Text lockedText;
     public void Start()
     {
