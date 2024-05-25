@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class KitchenPuzzleManager : MonoBehaviour
 {
@@ -90,8 +91,17 @@ public class KitchenPuzzleManager : MonoBehaviour
     void escape()
     {
         escapeText.gameObject.SetActive(true);
-        Invoke("HideText", 4.0f);
+        StartCoroutine(DisableTextAfterDelay(3.0f));
+        
         // 추가적인 해금 로직을 여기에 추가할 수 있습니다.
         Debug.Log("All objects are created. Object unlocked!");
+    }
+    private IEnumerator DisableTextAfterDelay(float delay)
+    {
+        // delay 초 동안 대기
+        yield return new WaitForSeconds(delay);
+        escapeText.gameObject.SetActive(false);
+        SceneManager.LoadScene("StartScene");
+
     }
 }

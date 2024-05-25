@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        // Scene 1의 인덱스를 불러와서 해당 Scene으로 전환
+       
         SceneManager.LoadScene("Stage1");
     }
 
