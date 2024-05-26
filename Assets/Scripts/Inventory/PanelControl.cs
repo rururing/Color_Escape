@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 
 public class PanelControl : MonoBehaviour
@@ -12,7 +14,9 @@ public class PanelControl : MonoBehaviour
     {
         // 시작 시에는 인벤토리 패널을 비활성화합니다.
         inventoryPanel.SetActive(false);
+       
     }
+
 
     void Update()
     {
@@ -20,6 +24,7 @@ public class PanelControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             inventoryPanel.SetActive(true);
+            InventoryManager.Instance.ListItems();
         }
     }
 

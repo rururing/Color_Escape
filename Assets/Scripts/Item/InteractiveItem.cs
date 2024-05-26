@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractiveItem : MonoBehaviour
 {
-    public Item Item;
+    public ItemSO Item;
 
     public virtual void onClick() { }
 

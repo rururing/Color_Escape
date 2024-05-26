@@ -32,8 +32,9 @@ public class Banana : InteractiveItem
 
     public override void pickUp()
     {
-        // 인벤토리에 데이터 넣고 
+        InventoryManager.Instance.Add(Item);
         Destroy(this.gameObject);
+        Debug.Log("add inventory");
 
     }
 }
