@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CyanPotion
   m_EditorClassIdentifier: 
   id: 3
-  itemName: 
-  itemDescription: 
-  icon: {fileID: 0}
+  itemName: "\uC0AC\uC774\uC548\uC0C9 \uBB3C\uC57D"
+  itemDescription: "\uC0AC\uC774\uC548 \uBE5B\uC744 \uB760\uB294 \uC561\uCCB4\uC774\uB2E4."
+  icon: {fileID: 21300000, guid: 06305ae1599927f4a878684b3632abd1, type: 3}

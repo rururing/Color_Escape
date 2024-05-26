@@ -66,10 +66,10 @@ public class BlueFlask : InteractiveItem
 
     public override void pickUp()
     {
-        // 게임매니저 ui
-        // 인벤토리에 데이터 넣고 
+        InventoryManager.Instance.Add(Item);
         Destroy(this.gameObject);
-      
+        Debug.Log("add inventory");
+
     }
 
 

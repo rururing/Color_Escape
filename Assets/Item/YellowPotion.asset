@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: YellowPotion
   m_EditorClassIdentifier: 
   id: 4
-  itemName: 
-  itemDescription: 
-  icon: {fileID: 0}
+  itemName: "\uB178\uB780\uC0C9 \uBB3C\uC57D"
+  itemDescription: "\uB178\uB780 \uBE5B\uC744 \uB760\uB294 \uC561\uCCB4\uC774\uB2E4."
+  icon: {fileID: 21300000, guid: e97ad30645a33de4c958094771f72f21, type: 3}

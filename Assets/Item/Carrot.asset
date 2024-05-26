@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   id: 11
-  itemName: 
-  itemDescription: 
-  icon: {fileID: 0}
+  itemName: "\uB2F9\uADFC"
+  itemDescription: "\uD3C9\uBC94\uD55C \uB2F9\uADFC\uC774\uB2E4."
+  icon: {fileID: 21300000, guid: 24707856f14478d4fac1cb23b779c7fe, type: 3}

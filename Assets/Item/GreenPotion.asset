@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GreenPotion
   m_EditorClassIdentifier: 
   id: 5
-  itemName: 
-  itemDescription: 
+  itemName: "\uCD08\uB85D\uC0C9 \uBB3C\uC57D"
+  itemDescription: "\uCD08\uB85D \uBE5B\uC744 \uB760\uB294 \uC561\uCCB4\uC774\uB2E4.
+    \uC775\uC219\uD55C \uCCAD\uC18C \uC138\uC81C \uB0C4\uC0C8\uAC00 \uB09C\uB2E4."
   icon: {fileID: 0}

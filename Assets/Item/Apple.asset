@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   id: 9
-  itemName: 
-  itemDescription: 
-  icon: {fileID: 0}
+  itemName: "\uC0AC\uACFC"
+  itemDescription: "\uD3C9\uBC94\uD55C \uC0AC\uACFC\uC774\uB2E4."
+  icon: {fileID: 21300000, guid: 26444b65da834c4438b9581ffdaf9535, type: 3}

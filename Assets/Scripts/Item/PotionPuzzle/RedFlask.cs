@@ -69,9 +69,10 @@ public class RedFlask : InteractiveItem
 
     public override void pickUp()
     {
-        // 인벤토리에 데이터 넣고 
-       Destroy(this.gameObject);
- 
+        InventoryManager.Instance.Add(Item);
+        Destroy(this.gameObject);
+        Debug.Log("add inventory");
+
     }
 
     public override void lightFlashed(int flashLightColor)

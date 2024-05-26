@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   id: 10
-  itemName: 
-  itemDescription: 
-  icon: {fileID: 0}
+  itemName: " \uBC14\uB098\uB098"
+  itemDescription: "\uD3C9\uBC94\uD55C \uBC14\uB098\uB098\uC774\uB2E4."
+  icon: {fileID: 21300000, guid: 4e1ddf6684408354781d73667df6ebc0, type: 3}

@@ -34,8 +34,9 @@ public class Sheep : InteractiveItem
     }
     public override void pickUp()
     {
-        //InventoryManager.Instance.Add(Item);
+        InventoryManager.Instance.Add(Item);
         Destroy(this.gameObject);
+        Debug.Log("add inventory");
 
     }
 

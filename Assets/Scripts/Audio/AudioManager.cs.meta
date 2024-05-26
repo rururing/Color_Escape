@@ -3,7 +3,8 @@ guid: 0e3b0a07801c29c4b9fb198a42260af6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bgmClip: {fileID: 8300000, guid: 532cca38dae3ad644afd24caaaa8f05a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
