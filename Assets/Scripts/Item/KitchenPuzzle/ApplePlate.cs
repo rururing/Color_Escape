@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class ApplePlate : InteractiveItem
 {
     public GameObject newObject;
-    public GameObject destroyedObject;
+    public GameObject disabledObject;
     public KitchenPuzzleManager puzzle;
     public Vector3 newPosition;
     private bool hasInstantiated = false;
-    private bool targetDestroyed = false;
+    private bool targetDisabled = false;
     public Text wrongText;
 
     public int foodOrder = 3;
+    public int neededItemId;
 
 
     public void Start()
@@ -27,27 +28,29 @@ public class ApplePlate : InteractiveItem
     void Update()
     {
         // 타겟 오브젝트가 파괴되었는지 체크
-        if (destroyedObject == null)
+        if (disabledObject != null && !disabledObject.activeSelf)
         {
-            targetDestroyed = true;
+            targetDisabled = true;
         }
 
-       
+
     }
     public override void onClick()
     {
-        if (1==1) // 소지하고 있는 아이템이 사과라면
+        if (InventoryManager.Instance.HasItem(neededItemId)) // 소지하고 있는 아이템이 사과라면
         {
             place(); //접시위에 올린다
-
+          
             if (puzzle != null)
             {
                 puzzle.OnFoodPlaced(foodOrder);
             }
+
+            InventoryManager.Instance.RemoveItem(neededItemId);
         }
         else
         {
-            wrongText.gameObject.SetActive(true);
+             wrongText.gameObject.SetActive(true);
             Invoke("HideText", 2.0f);
         }
 
@@ -59,13 +62,14 @@ public class ApplePlate : InteractiveItem
 
     public override void place()
     {
-        if (!hasInstantiated && targetDestroyed)
-        {
-            Instantiate(newObject, newPosition, Quaternion.identity);
-            puzzle.currentObjectCount++;
-            foodOrder = 0;
-            Debug.Log("count" + foodOrder);
-            hasInstantiated = true;
-        }
+        GameObject newObjectInstance = Instantiate(newObject, newPosition, Quaternion.identity);
+
+        // 생성된 오브젝트에 "PlaceableObject" 태그 부여
+        newObjectInstance.tag = "PlaceableObject";
+
+        puzzle.currentObjectCount++;
+        foodOrder = 0;
+        Debug.Log("count" + foodOrder);
+        hasInstantiated = true;
     }
 }

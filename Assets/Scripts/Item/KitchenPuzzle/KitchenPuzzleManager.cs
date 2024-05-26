@@ -10,7 +10,7 @@ public class KitchenPuzzleManager : MonoBehaviour
     public int currentObjectCount = 0; // 현재 생성된 오브젝트 개수
     private int isUnlocked = 0; // 해금 여부를 확인하는 변수
 
-    public GameObject[] objectsToReset;
+    public string tagToDestroy = "PlaceableObject";
 
     public Text failText;
     public Text escapeText;
@@ -33,6 +33,20 @@ public class KitchenPuzzleManager : MonoBehaviour
     {
         failText.gameObject.SetActive(false);
         escapeText.gameObject.SetActive(false);
+    }
+
+
+    // place 메소드를 통해 생성된 모든 게임 오브젝트 제거
+    public void DestroyObjects()
+    {
+        // 지정된 태그를 가진 모든 게임 오브젝트를 찾아서 파괴
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tagToDestroy);
+        foreach (GameObject obj in objectsWithTag)
+        {
+            Destroy(obj);
+        }
+        // 현재 생성된 오브젝트 수 초기화
+        currentObjectCount = 0;
     }
 
 
@@ -60,14 +74,6 @@ public class KitchenPuzzleManager : MonoBehaviour
                 failText.gameObject.SetActive(true);
                 // 2초 후에 비활성화되도록 Invoke() 호출
                 Invoke("HideText", 2.0f);
-               
-                foreach (GameObject obj in objectsToReset)
-                {
-                    // 물체들 삭제하기
-
-                }
-                // 인벤토리에 사라졌던 물체들 다시 넣기
-
 
             }
         }
@@ -86,15 +92,14 @@ public class KitchenPuzzleManager : MonoBehaviour
         return true;
     }
 
-  
+
 
     void escape()
     {
         escapeText.gameObject.SetActive(true);
         StartCoroutine(DisableTextAfterDelay(3.0f));
-        
+
         // 추가적인 해금 로직을 여기에 추가할 수 있습니다.
-        Debug.Log("All objects are created. Object unlocked!");
     }
     private IEnumerator DisableTextAfterDelay(float delay)
     {

@@ -71,7 +71,6 @@ public class InventoryManager : MonoBehaviour
 
     ItemSO rememberADDItemSO;
 
-    int inhand = -1;  // -1 == 손에 아무것도 없음 
 
     public void SelectItem(ItemSO itemS0)
     {
@@ -90,11 +89,6 @@ public class InventoryManager : MonoBehaviour
             if (itemS0.id == rememberADDItemSO.id)
             {
                 nowState = state.one_doubleclicked;
-                // TODO 아이템을 손에 들고있게 한 후 
-                inhand = itemS0.id;
-
-                nowState = state.none;
-                Debug.Log(nowState);
 
             }
             else
@@ -102,9 +96,8 @@ public class InventoryManager : MonoBehaviour
                 nowState = state.two_selected;
                 Debug.Log(nowState);
 
-                int combine = checkCombine(rememberADDItemSO.id, itemS0.id); // -1 이라면 조합 불가능 이라고 하자!
-                                                                    // Table 에 가서 rememberAdd + itemS0.ID 조합식이 있나?
-                if(combine == -1)
+                int combine = checkCombine(rememberADDItemSO.id, itemS0.id);                                                                    
+                if (combine == -1)
                 {
                     Debug.Log("조합불가능");
                     //조합할 수 없는 아이템입니다 팝업창
@@ -113,16 +106,7 @@ public class InventoryManager : MonoBehaviour
                     Invoke("HideText", 2.0f);
                 }
                 else if (combine != -1) // 조합이 가능할 때
-                {
-                    // 손에 들고있던 물건 빠지는 경우의 수 ((손에들고있는물건 == rememberAdd || 손에들고있는물건 == itemS0.ID) && 이둘은조합가능(rememberAdd, itemS0.ID))
-                    if (inhand != -1)
-                    {
-                        if (inhand == rememberADDItemSO.id || inhand == itemS0.id)
-                        {
-                            // 손에서 빼준다.
-                            inhand = -1;
-                        }
-                    }
+                {               
                     // 조합에서 사용한 아이템 삭제
                     Items.Remove(rememberADDItemSO);
                     Items.Remove(itemS0);
@@ -155,9 +139,9 @@ public class InventoryManager : MonoBehaviour
 
         ItemSO getItemByIndex(int itemIndex)
         {
-            foreach(ItemSO itemSO in CombinedResultItems)
+            foreach (ItemSO itemSO in CombinedResultItems)
             {
-                if(itemSO.id == itemIndex)
+                if (itemSO.id == itemIndex)
                 {
                     return itemSO;
                 }
@@ -166,8 +150,35 @@ public class InventoryManager : MonoBehaviour
         }
 
     }
+    public bool HasItem(int itemId)
+    {
+        foreach (var item in Items)
+        {
+            if (item.id == itemId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     private void HideText()
     {
         lockedText.gameObject.SetActive(false);
     }
+
+    public void RemoveItem(int itemId)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].id == itemId)
+            {
+                Items.RemoveAt(i);
+                break;
+            }
+        }
+
+        // UI 업데이트
+        ListItems();
+    }
 }
+

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Key : InteractiveItem
 {
     public Text lockedText;
+
     public void Start()
     {
         // 시작 시에 텍스트를 비활성화
@@ -33,8 +34,9 @@ public class Key : InteractiveItem
     }
     public override void pickUp()
     {
-        //InventoryManager.Instance.Add(Item);
+        InventoryManager.Instance.Add(Item);
         Destroy(this.gameObject);
+        Debug.Log("add inventory");
 
     }
 

@@ -8,10 +8,14 @@ public class ResetBtn : InteractiveItem
     public CarrotPlate cp;
     public SalmonPlate sp;
 
-    public KitchenPuzzleManager password;
+    public GameObject apple;
+    public GameObject banana;
+    public GameObject carrot;
+    public GameObject salmon;
 
-    public Material BluePlate; 
+    public KitchenPuzzleManager puzzleManager; // 퍼즐 매니저를 연결할 변수
 
+    public Material BluePlate;
 
 
     public void Start()
@@ -43,8 +47,60 @@ public class ResetBtn : InteractiveItem
         {
             sp.GetComponent<Renderer>().material = BluePlate;
         }
+        
+            // 각각의 오브젝트를 다시 보이게 하기 위해 EnableObject 함수 호출
+            EnableObject(apple);
+            EnableObject(banana);
+            EnableObject(carrot);
+            EnableObject(salmon);
+
+            // 각각의 스크립트의 lockedText를 다시 숨기기 위해 호출
+            Apple appleScript = apple.GetComponent<Apple>();
+            if (appleScript != null && appleScript.lockedText != null)
+            {
+                appleScript.lockedText.gameObject.SetActive(false);
+            }
+            Banana bananaScript = banana.GetComponent<Banana>();
+            if (bananaScript != null && bananaScript.lockedText != null)
+            {
+                bananaScript.lockedText.gameObject.SetActive(false);
+            }
+
+             Carrot carrotScript = carrot.GetComponent<Carrot>();
+            if (carrotScript != null && carrotScript.lockedText != null)
+            {
+                carrotScript.lockedText.gameObject.SetActive(false);
+            }
+
+            Salmon salmonScript = salmon.GetComponent<Salmon>();
+            if (salmonScript != null && salmonScript.lockedText != null)
+            {
+                salmonScript.lockedText.gameObject.SetActive(false);
+            }
+
+        puzzleManager.DestroyObjects();
+        Debug.Log("파괴요청");
+
 
     }
+
+    private void EnableObject(GameObject obj)
+    {
+        // Renderer 컴포넌트를 활성화하여 오브젝트를 다시 보이게 만듦
+        Renderer renderer = obj.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = true;
+        }
+
+        // Collider 컴포넌트를 활성화하여 충돌을 다시 가능하게 만듦
+        Collider collider = obj.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
+    }
+
     public override void press()
     {
 

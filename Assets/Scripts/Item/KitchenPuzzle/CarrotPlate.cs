@@ -18,6 +18,8 @@ public class CarrotPlate : InteractiveItem
     public Material Red_Plate;
 
     public int foodOrder = 0;
+    public int neededItemId;
+
     public void Start()
     {
         // 시작 시에 텍스트를 비활성화
@@ -36,13 +38,17 @@ public class CarrotPlate : InteractiveItem
     }
     public override void onClick()
     {
-        if (1 == 1) // 소지하고 있는 아이템이 당근이라면
+        if (InventoryManager.Instance.HasItem(neededItemId)) // 소지하고 있는 아이템이 당근이라면
         {
             place(); //접시위에 올린다
+
             if (puzzle != null)
             {
                 puzzle.OnFoodPlaced(foodOrder);
+
             }
+
+            InventoryManager.Instance.RemoveItem(neededItemId);
         }
         else
         {
@@ -58,14 +64,15 @@ public class CarrotPlate : InteractiveItem
 
     public override void place()
     {
-        if (!hasInstantiated && targetDestroyed)
-        {
-            Instantiate(newObject, newPosition, Quaternion.Euler(newRotation));
-            puzzle.currentObjectCount++;
-            foodOrder = 1;
-            Debug.Log("count" + foodOrder);
-            hasInstantiated = true;
-        }
+        GameObject newObjectInstance = Instantiate(newObject, newPosition, Quaternion.Euler(newRotation));
+
+        // 생성된 오브젝트에 "PlaceableObject" 태그 부여
+        newObjectInstance.tag = "PlaceableObject";
+
+        puzzle.currentObjectCount++;
+        foodOrder = 1;
+        Debug.Log("count" + foodOrder);
+        hasInstantiated = true;
     }
 
     public override void lightFlashed(int flashLightColor)

@@ -17,6 +17,7 @@ public class SalmonPlate : InteractiveItem
     public Material Red_Plate;
 
     public int foodOrder = 0;
+    public int neededItemId;
 
     public void Start()
     {
@@ -37,13 +38,15 @@ public class SalmonPlate : InteractiveItem
     }
     public override void onClick()
     {
-        if (1 == 1) // 소지하고 있는 아이템이 연어라면
+        if (InventoryManager.Instance.HasItem(neededItemId)) // 연어가 인벤토리에 있다면
         {
             place(); //접시위에 올린다
             if (puzzle != null)
             {
                 puzzle.OnFoodPlaced(foodOrder);
             }
+
+            InventoryManager.Instance.RemoveItem(neededItemId);
         }
         else
         {
@@ -59,15 +62,15 @@ public class SalmonPlate : InteractiveItem
 
     public override void place()
     {
-        if (!hasInstantiated && targetDestroyed)
-        {
-            Instantiate(newObject, newPosition, Quaternion.identity);
-            puzzle.currentObjectCount++;
-            foodOrder = 2;
-            Debug.Log("count" + foodOrder);
-            hasInstantiated = true;
+        GameObject newObjectInstance = Instantiate(newObject, newPosition, Quaternion.identity);
 
-        }
+        // 생성된 오브젝트에 "PlaceableObject" 태그 부여
+        newObjectInstance.tag = "PlaceableObject";
+
+        puzzle.currentObjectCount++;
+        foodOrder = 2;
+        Debug.Log("count" + foodOrder);
+        hasInstantiated = true;
     }
 
     public override void lightFlashed(int flashLightColor)

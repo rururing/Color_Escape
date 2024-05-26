@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class Door : InteractiveItem
 {
     public Text lockedText;
-    public DoorManager door;
+    public int keyItemId;
+
+
     public void Start()
     {
         // 시작 시에 텍스트를 비활성화
@@ -15,10 +17,11 @@ public class Door : InteractiveItem
     }
     public override void onClick()
     {
-        if(door.keyobtained == 1) // 키를 가지고있으면
+        if (InventoryManager.Instance.HasItem(keyItemId)) // 키를 가지고있으면
         {
+            
             SceneManager.LoadScene("Stage2");
-            // 인벤토리에서 열쇠 파괴
+          
         }
         else
         {

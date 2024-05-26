@@ -33,7 +33,21 @@ public class Banana : InteractiveItem
     public override void pickUp()
     {
         InventoryManager.Instance.Add(Item);
-        Destroy(this.gameObject);
+
+        // Renderer 컴포넌트를 비활성화하여 오브젝트를 보이지 않게 만듦
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;
+        }
+
+        // Collider 컴포넌트를 비활성화하여 충돌을 방지
+        Collider collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
         Debug.Log("add inventory");
 
     }
