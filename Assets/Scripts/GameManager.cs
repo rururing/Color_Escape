@@ -30,34 +30,40 @@ public class GameManager : MonoBehaviour
     public void OpenHelpPanel()
     {
         // 도움말 창을 열음
+        AudioManager.Instance.PlaySFX("Button");
         HelpPanel.SetActive(true);
     }
 
     public void CloseHelpPanel()
     {
         // 도움말 창을 닫음
+        AudioManager.Instance.PlaySFX("Close");
         HelpPanel.SetActive(false);
     }
     public void OpenSettingPanel()
     {
         // 도움말 창을 닫음
+        AudioManager.Instance.PlaySFX("Button");
         SettingPanel.SetActive(true);
     }
     public void CloseSettingPanel()
     {
         // 도움말 창을 닫음
+        AudioManager.Instance.PlaySFX("Close");
         SettingPanel.SetActive(false);
     }
 
     public void OpenCreditPanel()
     {
         // 도움말 창을 열음
+        AudioManager.Instance.PlaySFX("Button");
         CreditPanel.SetActive(true);
     }
 
     public void CloseCreditPanel()
     {
         // 도움말 창을 닫음
+        AudioManager.Instance.PlaySFX("Close");
         CreditPanel.SetActive(false);
     }
 

@@ -24,6 +24,7 @@ public class Detector : MonoBehaviour
                 InteractiveItem clickedItem = hitObject.GetComponent<InteractiveItem>();
                 if (clickedItem != null)
                 {
+                    AudioManager.Instance.PlaySFX("Interaction");
                     clickedItem.onClick();
                 }
 

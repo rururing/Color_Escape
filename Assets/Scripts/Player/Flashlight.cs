@@ -38,6 +38,7 @@ public class Flashlight : MonoBehaviour
         {
             ChangeLightColor();
             Debug.Log("≈‰±€" + flashLightColor);
+            AudioManager.Instance.PlaySFX("Flashlight");
             
         }
         

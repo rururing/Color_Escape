@@ -10,10 +10,8 @@ public class ApplePlate : InteractiveItem
     public GameObject disabledObject;
     public KitchenPuzzleManager puzzle;
     public Vector3 newPosition;
-    private bool hasInstantiated = false;
-    private bool targetDisabled = false;
     public Text wrongText;
-
+    private bool hasInstantiated = false;
     public int foodOrder = 3;
     public int neededItemId;
 
@@ -27,11 +25,6 @@ public class ApplePlate : InteractiveItem
     }
     void Update()
     {
-        // 타겟 오브젝트가 파괴되었는지 체크
-        if (disabledObject != null && !disabledObject.activeSelf)
-        {
-            targetDisabled = true;
-        }
 
 
     }

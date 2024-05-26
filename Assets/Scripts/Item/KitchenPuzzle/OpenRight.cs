@@ -10,6 +10,7 @@ public class OpenRight : InteractiveItem
     public override void onClick()
     {
         open();
+        AudioManager.Instance.PlaySFX("Open Lid");
     }
     public override void open()
     {

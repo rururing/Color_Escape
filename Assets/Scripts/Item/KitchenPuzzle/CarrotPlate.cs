@@ -11,7 +11,6 @@ public class CarrotPlate : InteractiveItem
     public Vector3 newPosition;
     public Vector3 newRotation;
     private bool hasInstantiated = false;
-    private bool targetDestroyed = false;
     public Text wrongText;
 
     public Flashlight flashlight;
@@ -28,11 +27,7 @@ public class CarrotPlate : InteractiveItem
     }
     void Update()
     {
-        // 타겟 오브젝트가 파괴되었는지 체크
-        if (destroyedObject == null)
-        {
-            targetDestroyed = true;
-        }
+
 
 
     }

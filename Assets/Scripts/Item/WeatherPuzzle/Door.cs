@@ -19,7 +19,7 @@ public class Door : InteractiveItem
     {
         if (InventoryManager.Instance.HasItem(keyItemId)) // 키를 가지고있으면
         {
-            
+            AudioManager.Instance.PlaySFX("Door");
             SceneManager.LoadScene("Stage2");
           
         }

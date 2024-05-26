@@ -25,6 +25,7 @@ public class ChestLid : InteractiveItem
         // 다른 스테이지에서 조건 해금이 이루어진경우에만 실행
         if (!isAnimating && check.unlocked == 1)
         {
+            AudioManager.Instance.PlaySFX("Open Lid");
             StartCoroutine(AnimateOpen());
             return;
         }

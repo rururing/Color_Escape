@@ -9,9 +9,8 @@ public class SalmonPlate : InteractiveItem
     public GameObject destroyedObject;
     public KitchenPuzzleManager puzzle;
     public Vector3 newPosition;
-    private bool hasInstantiated = false;
-    private bool targetDestroyed = false;
     public Text wrongText;
+    private bool hasInstantiated = false;
 
     public Flashlight flashlight;
     public Material Red_Plate;
@@ -28,11 +27,6 @@ public class SalmonPlate : InteractiveItem
     }
     void Update()
     {
-        // 타겟 오브젝트가 파괴되었는지 체크
-        if (destroyedObject == null)
-        {
-            targetDestroyed = true;
-        }
 
 
     }

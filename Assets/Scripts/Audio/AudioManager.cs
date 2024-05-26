@@ -1,73 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager Instance = null;
 
-    [Header("#BGM")]
-    public AudioClip bgmClip;
-    public float bgmVolume;
+    public Sound[] musicSounds, sfxSounds;
+    public AudioSource musicSource, sfxSource;
 
-    AudioSource bgmPlayer;
-
-    [Header("#SFX")]
-    public AudioClip[] sfxClip;
-    public float sfxVolume;
-    public int channels;
-    AudioSource[] sfxPlayers;
-
-    int channelIndex;
-
-    public enum Sfx { Get, DoorOpen};
-
-    void Awake()
+    private void Awake()
     {
-        instance = this;
-        Init();
-
-    }
-    void Init()
-    {
-        // 배경음 플레이어 초기화
-        GameObject bgmObject = new GameObject("BgmPlayer");
-        bgmObject.transform.parent = transform;
-        bgmPlayer = bgmObject.AddComponent<AudioSource>();
-        bgmPlayer.playOnAwake = false;
-        bgmPlayer.loop = true;
-        bgmPlayer.volume = bgmVolume;
-        bgmPlayer.clip = bgmClip;
-
-        // 효과음 플레이어 초기화
-        GameObject sfxObject = new GameObject("BgmPlayer");
-        sfxObject.transform.parent = transform;
-        sfxPlayers = new AudioSource[channels];
-
-       
-        for(int index = 0; index<sfxPlayers.Length; index++)
+        if(Instance == null)
         {
-            sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
-            sfxPlayers[index].playOnAwake = false;
-            sfxPlayers[index].volume = sfxVolume;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    public void PlaySfx(Sfx sfx)
+    private void Start()
     {
-        for (int index = 0; index < sfxPlayers.Length; index++)
+        PlayMusic("BGM");
+    }
+
+    public void PlayMusic(string name)
+    {
+        Sound s = Array.Find(musicSounds, x => x.name == name);
+
+        if (s == null)
         {
-            int loopIndex = (index + channelIndex) % sfxPlayers.Length;
-
-            if (sfxPlayers[loopIndex].isPlaying)
-            {
-                continue;
-            }
-
-            channelIndex = loopIndex;
-            sfxPlayers[loopIndex].clip = sfxClip[(int)sfx];
-            sfxPlayers[loopIndex].Play();
-            break;
+            Debug.Log("Sound not Found");      
+        }
+        else
+        {
+            musicSource.clip = s.clip;
+            musicSource.Play();
         }
     }
+    public void PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound not Found");
+        }
+        else
+        {
+            sfxSource.clip = s.clip;
+            sfxSource.Play();
+        }
+    }
+
+    public void ToggleMusic()
+    {
+        musicSource.mute = !musicSource.mute;
+    }
+    public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public void SFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
+    }
+   
 }

@@ -23,6 +23,7 @@ public class PanelControl : MonoBehaviour
         // I 키를 누르면 인벤토리 패널의 활성화/비활성화 상태를 변경합니다.
         if (Input.GetKeyDown(KeyCode.I))
         {
+            AudioManager.Instance.PlaySFX("inventory");
             inventoryPanel.SetActive(true);
             InventoryManager.Instance.ListItems();
         }
@@ -31,6 +32,7 @@ public class PanelControl : MonoBehaviour
     public void CloseInventory()
     {
         // 도움말 창을 닫음
+        AudioManager.Instance.PlaySFX("Close");
         inventoryPanel.SetActive(false);
     }
 
