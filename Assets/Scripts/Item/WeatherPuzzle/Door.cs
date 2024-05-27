@@ -9,7 +9,6 @@ public class Door : InteractiveItem
     public Text lockedText;
     public int keyItemId;
 
-
     public void Start()
     {
         // 시작 시에 텍스트를 비활성화
@@ -19,7 +18,7 @@ public class Door : InteractiveItem
     {
         if (InventoryManager.Instance.HasItem(keyItemId)) // 키를 가지고있으면
         {
-            AudioManager.Instance.PlaySFX("Door");
+            AudioManager.Instance.PlaySFX("Open Lid");
             SceneManager.LoadScene("Stage2");
           
         }
@@ -29,6 +28,7 @@ public class Door : InteractiveItem
             Invoke("HideText", 2.0f);
         }
     }
+  
 
     private void HideText()
     {

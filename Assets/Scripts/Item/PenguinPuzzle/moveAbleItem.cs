@@ -75,7 +75,6 @@ public class moveAbleItem : InteractiveItem
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Escape"))
         {
             AudioManager.Instance.PlaySFX("Open Lid");
-            open();
             SceneManager.LoadScene("Stage3");
         }
 
@@ -124,38 +123,6 @@ public class moveAbleItem : InteractiveItem
         }
 
         return taggedObjects;
-    }
-
-    public override void open()
-    {
-        Quaternion currentRotation = transform.rotation;
-
-        Quaternion targetRotation;
-        if (isRotated)
-        {
-            targetRotation = Quaternion.Euler(0, 0, 0);
-        }
-        else
-        {
-            targetRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, -90, 0));
-        }
-
-        StartCoroutine(RotateObject(currentRotation, targetRotation, 0.5f));
-
-        isRotated = !isRotated;
-    }
-    private IEnumerator RotateObject(Quaternion startRot, Quaternion endRot, float duration)
-    {
-        float elapsedTime = 0;
-
-        while (elapsedTime < duration)
-        {
-            transform.rotation = Quaternion.Slerp(startRot, endRot, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.rotation = endRot;
     }
 
 }
