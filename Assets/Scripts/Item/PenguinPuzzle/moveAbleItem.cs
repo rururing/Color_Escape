@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class moveAbleItem : MonoBehaviour
+public class moveAbleItem : InteractiveItem
 {
     public float moveSpeed = 1f; // 이동 속도
     private bool isMoving = false; // 이동 여부를 확인하는 플래그

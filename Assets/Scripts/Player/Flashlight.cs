@@ -46,20 +46,32 @@ public class Flashlight : MonoBehaviour
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hitInfo;
 
-            // 광선이 어떤 물체와 충돌하는지 체크합니다.
-            if (Physics.Raycast(ray, out hitInfo, 5f))
+        // 광선이 어떤 물체와 충돌하는지 체크합니다.
+        if (Physics.Raycast(ray, out hitInfo, 5f))
+        {
+            //Debug.Log("Flashlight Hit object: " + hitInfo.collider.gameObject.name);
+            GameObject hitObject = hitInfo.collider.gameObject;
+            InteractiveItem flahsedObject = hitObject.GetComponent<InteractiveItem>();
+            moveAbleItem flahsedObject2 = hitObject.GetComponent<moveAbleItem>();
+
+            if (flahsedObject != null)
             {
-                //Debug.Log("Flashlight Hit object: " + hitInfo.collider.gameObject.name);
-                GameObject hitObject = hitInfo.collider.gameObject;
-                InteractiveItem flahsedObject = hitObject.GetComponent<InteractiveItem>();
-
-                if (flahsedObject != null)
-                {
-                    flahsedObject.lightFlashed(flashLightColor);
-                }
-
+                flahsedObject.lightFlashed(flashLightColor);
             }
-        
+            //moveAbleItem 와 상호작용
+            if (flahsedObject2 != null)
+            {
+                flahsedObject2.lightFlashed(flashLightColor);
+            }
+
+            // 방해물 오브젝트와 상호작용
+            DisappearingObstacle obstacle = hitObject.GetComponent<DisappearingObstacle>();
+            if (obstacle != null)
+            {
+                obstacle.lightFlashed(flashLightColor);
+            }
+        }
+
     }
 }
 
