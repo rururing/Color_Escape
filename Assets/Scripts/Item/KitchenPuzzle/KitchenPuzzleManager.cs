@@ -15,6 +15,8 @@ public class KitchenPuzzleManager : MonoBehaviour
     public Text failText;
     public Text escapeText;
 
+    public GameObject EndPanel;
+
     private int[] correctSequence = { 0, 1, 2, 3 };
 
     // 현재까지 입력된 버튼들의 ID를 저장하는 배열
@@ -26,6 +28,7 @@ public class KitchenPuzzleManager : MonoBehaviour
         // 시작 시에 텍스트를 비활성화
         failText.gameObject.SetActive(false);
         escapeText.gameObject.SetActive(false);
+        EndPanel.SetActive(false);
 
     }
 
@@ -106,7 +109,17 @@ public class KitchenPuzzleManager : MonoBehaviour
         // delay 초 동안 대기
         yield return new WaitForSeconds(delay);
         escapeText.gameObject.SetActive(false);
-        SceneManager.LoadScene("StartScene");
+        AudioManager.Instance.PlaySFX("Button");
+        EndPanel.SetActive(true);
 
     }
+
+    public void CloseEndPanel()
+    {
+        // 도움말 창을 닫음
+        AudioManager.Instance.PlaySFX("Close");
+        SceneManager.LoadScene("StartScene");
+    }
+
+
 }
