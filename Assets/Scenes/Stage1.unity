@@ -7854,8 +7854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d7c711e413f104e9fbbb3dd1c7bc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 250
-  sensY: 250
+  sensX: 300
+  sensY: 300
   orientation: {fileID: 1702587358}
   panels:
   - {fileID: 2100229212}
