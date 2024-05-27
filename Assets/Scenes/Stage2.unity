@@ -741,6 +741,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5d7e5a04bbfd294ab3b2555c37c336f, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 2262813793767599629, guid: d5d7e5a04bbfd294ab3b2555c37c336f, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -879,7 +883,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 0}
   requiredFlashlightColor: 0
-  fadeDuration: 2
 --- !u!23 &280971717
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4763,6 +4766,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 628240088f45c044e8b60a4812d3b401, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 1006992862286504014, guid: 628240088f45c044e8b60a4812d3b401, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -5115,6 +5122,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b9542212fc1492d4281773556de62678, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9542212fc1492d4281773556de62678, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 2212402647437941706, guid: b9542212fc1492d4281773556de62678, type: 3}
       propertyPath: m_Layer
@@ -9186,7 +9197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 0}
   requiredFlashlightColor: 3
-  fadeDuration: 2
 --- !u!23 &1402046571
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9364,7 +9374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 0}
   requiredFlashlightColor: 2
-  fadeDuration: 2
 --- !u!23 &1583925262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9656,9 +9665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1666078338}
-  - component: {fileID: 1666078337}
   - component: {fileID: 1666078336}
-  - component: {fileID: 1666078335}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -9666,19 +9673,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1666078335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666078334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4c421717bc13f40aaffdd52140379e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisItem: {fileID: 0}
 --- !u!114 &1666078336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9692,33 +9686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 76811315}
---- !u!114 &1666078337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666078334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76b493aef1fd37469ef55a0adbcf418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Items: []
-  combineTable:
-  - {x: 12, y: 5, z: 7}
-  - {x: 5, y: 12, z: 7}
-  - {x: 6, y: 10, z: 8}
-  - {x: 10, y: 6, z: 8}
-  - {x: 7, y: 8, z: 4}
-  - {x: 8, y: 7, z: 4}
-  CombinedResultItems:
-  - {fileID: 11400000, guid: 6f44c706faa71a244b5e0babcd9e9bbf, type: 2}
-  - {fileID: 11400000, guid: 82c75d8baadfbc34188a616d802f67b5, type: 2}
-  - {fileID: 11400000, guid: e6125246dd3315e43a9502eea338af9d, type: 2}
-  ItemContent: {fileID: 0}
-  InventoryItem: {fileID: 8219779200737376299, guid: 8ecdb34f48bd51d47a430ef2fef88cca, type: 3}
-  lockedText: {fileID: 0}
 --- !u!4 &1666078338
 Transform:
   m_ObjectHideFlags: 0
@@ -11390,7 +11357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4494775606006702, guid: da4ad2310c6a3a44e8c6b74c731ffbc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.655
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4494775606006702, guid: da4ad2310c6a3a44e8c6b74c731ffbc7, type: 3}
       propertyPath: m_LocalPosition.z

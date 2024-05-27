@@ -8,11 +8,14 @@ public class moveAbleItem : InteractiveItem
     public float moveSpeed = 1f; // 이동 속도
     private bool isMoving = false; // 이동 여부를 확인하는 플래그
     private Rigidbody rb; // Rigidbody 컴포넌트를 참조하기 위한 변수
-
+    private Vector3 startPosition;
+    private Quaternion startRotation;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbody 컴포넌트 참조
+        startPosition = rb.position; // 시작 위치 저장
+        startRotation = rb.rotation;
     }
 
 
@@ -63,10 +66,48 @@ public class moveAbleItem : InteractiveItem
     }
     void GameOver()
     {
-        // 게임오버 메시지 출력
-        Debug.Log("Game Over!");
+        List<GameObject> obstacles = new List<GameObject>();
+        Scene scene = SceneManager.GetActiveScene();
+        GameObject[] rootObjects = scene.GetRootGameObjects();
 
-        // 씬 리셋
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        foreach (GameObject rootObject in rootObjects)
+        {
+            obstacles.AddRange(FindGameObjectsWithTagInChildren(rootObject, "Obstacle"));
+        }
+
+        foreach (GameObject obstacle in obstacles)
+        {
+            obstacle.SetActive(true);
+        }
+
+        if (rb != null)
+        {
+            // 참조한 오브젝트를 시작 위치와 각도로 되돌리기
+            rb.position = startPosition;
+            rb.rotation = startRotation;
+            rb.velocity = Vector3.zero; // 오브젝트의 속도를 초기화
+            rb.angularVelocity = Vector3.zero; // 오브젝트의 각속도를 초기화
+        }
+
+        // 이동 상태 초기화
+        isMoving = false;
+    }
+
+    private IEnumerable<GameObject> FindGameObjectsWithTagInChildren(GameObject parent, string tag)
+    {
+        List<GameObject> taggedObjects = new List<GameObject>();
+
+        if (parent.CompareTag(tag))
+        {
+            taggedObjects.Add(parent);
+        }
+
+        foreach (Transform child in parent.transform)
+        {
+            taggedObjects.AddRange(FindGameObjectsWithTagInChildren(child.gameObject, tag));
+        }
+
+        return taggedObjects;
     }
 }
+
