@@ -43,7 +43,7 @@ public class ApplePlate : InteractiveItem
         }
         else
         {
-             wrongText.gameObject.SetActive(true);
+            wrongText.gameObject.SetActive(true);
             Invoke("HideText", 2.0f);
         }
 

@@ -4707,8 +4707,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.825195, y: 25.620016}
-  m_SizeDelta: {x: 613.8419, y: 108.46}
+  m_AnchoredPosition: {x: 1.9603, y: 17}
+  m_SizeDelta: {x: 1320.0328, y: 249.2209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1122621859
 PrefabInstance:
@@ -9595,6 +9595,10 @@ MonoBehaviour:
   salmon: {fileID: 411809513091386559}
   puzzleManager: {fileID: 337390098}
   BluePlate: {fileID: 2100000, guid: aef25ea260dab4b4eb3a8d474748355a, type: 2}
+  ItemId1: 1
+  ItemId2: 2
+  ItemId3: 3
+  ItemId4: 9
 --- !u!4 &2064614465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4410843128935598, guid: c3eb64e478b2bb748ae1501daf818368, type: 3}

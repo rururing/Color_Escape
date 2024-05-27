@@ -17,6 +17,11 @@ public class ResetBtn : InteractiveItem
 
     public Material BluePlate;
 
+    public int ItemId1;
+    public int ItemId2;
+    public int ItemId3;
+    public int ItemId4;
+
 
     public void Start()
     {
@@ -78,7 +83,12 @@ public class ResetBtn : InteractiveItem
                 salmonScript.lockedText.gameObject.SetActive(false);
             }
 
+
         puzzleManager.DestroyObjects();
+        InventoryManager.Instance.RemoveItem(ItemId1);
+        InventoryManager.Instance.RemoveItem(ItemId2);
+        InventoryManager.Instance.RemoveItem(ItemId3);
+        InventoryManager.Instance.RemoveItem(ItemId4);
         Debug.Log("ÆÄ±«¿äÃ»");
 
 
