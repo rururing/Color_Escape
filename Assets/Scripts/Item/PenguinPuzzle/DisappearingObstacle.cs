@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisappearingObstacle : MonoBehaviour
+public class DisappearingObstacle : InteractiveItem
 {
     public int requiredFlashlightColor; // 사라지기 위해 필요한 손전등 색깔 인덱스
     public float fadeDuration = 2f; // 방해물이 사라지는 데 걸리는 시간 (초)

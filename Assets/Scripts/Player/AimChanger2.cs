@@ -38,7 +38,7 @@ public class AimChanger2 : MonoBehaviour
             {
                 if (canvasImage != null)
                 {
-                    if (hitObject.name == "PENGUIN")
+                    if (hitObject.name == "PENGUIN" || hitObject.name == "Wolf_Animated" || hitObject.name == "Shark_Animated" || hitObject.name == "Goat_Animated")
                     {
                         penguinText.enabled = true;
                     }
@@ -54,15 +54,13 @@ public class AimChanger2 : MonoBehaviour
                         canvasImage.sprite = yourNewSprite;
                     }
                 }
-
-
             }
             else
             {
                 // 상호작용 가능한 물체가 아닐 경우 원래의 이미지로
                 canvasImage.sprite = originalSprite;
-                resetText.enabled = false;
                 penguinText.enabled = false;
+                resetText.enabled = false;
 
             }
         }
