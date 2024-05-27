@@ -8,7 +8,6 @@ public class InteractiveItem : MonoBehaviour
 
     public virtual void onClick() { }
 
-
     public virtual void pickUp() { }
 
     public virtual void press() { }
