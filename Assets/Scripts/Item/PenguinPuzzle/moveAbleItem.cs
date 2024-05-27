@@ -11,11 +11,21 @@ public class moveAbleItem : InteractiveItem
     private Vector3 startPosition;
     private Quaternion startRotation;
 
+    private bool isRotated = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbody 컴포넌트 참조
         startPosition = rb.position; // 시작 위치 저장
         startRotation = rb.rotation;
+
+  
+            int playerLayer = LayerMask.NameToLayer("Default");
+            int targetLayer = LayerMask.NameToLayer("penguin");
+
+            // PlayerLayer와 TargetLayer 간의 충돌을 무시합니다.
+            Physics.IgnoreLayerCollision(playerLayer, targetLayer);
+        
     }
 
 
@@ -61,6 +71,12 @@ public class moveAbleItem : InteractiveItem
         {
             // 방해물과 충돌 시 게임오버 처리
             GameOver();
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Escape"))
+        {
+            AudioManager.Instance.PlaySFX("Open Lid");
+            open();
+            SceneManager.LoadScene("Stage3");
         }
 
     }
@@ -109,5 +125,38 @@ public class moveAbleItem : InteractiveItem
 
         return taggedObjects;
     }
+
+    public override void open()
+    {
+        Quaternion currentRotation = transform.rotation;
+
+        Quaternion targetRotation;
+        if (isRotated)
+        {
+            targetRotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            targetRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, -90, 0));
+        }
+
+        StartCoroutine(RotateObject(currentRotation, targetRotation, 0.5f));
+
+        isRotated = !isRotated;
+    }
+    private IEnumerator RotateObject(Quaternion startRot, Quaternion endRot, float duration)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            transform.rotation = Quaternion.Slerp(startRot, endRot, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = endRot;
+    }
+
 }
 
